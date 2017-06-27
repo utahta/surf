@@ -4,27 +4,16 @@ package agent
 
 import (
 	"runtime"
-	"syscall"
 )
 
 // osName returns the name of the OS.
 func osName() string {
-	buf := &syscall.Utsname{}
-	err := syscall.Uname(buf)
-	if err != nil {
-		return runtime.GOOS
-	}
-	return charsToString(buf.Sysname)
+	return runtime.GOOS
 }
 
 // osVersion returns the OS version.
 func osVersion() string {
-	buf := &syscall.Utsname{}
-	err := syscall.Uname(buf)
-	if err != nil {
-		return "0.0"
-	}
-	return charsToString(buf.Release)
+	return "0.0"
 }
 
 // charsToString converts a [65]int8 byte array into a string.
